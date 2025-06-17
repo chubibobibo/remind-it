@@ -1,9 +1,11 @@
 import express from "express";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 
 import { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
+// import { connectDb } from "../lib/db.js";
 
 const app = express();
 
@@ -14,6 +16,16 @@ app.use(express.json()); // parses json
 interface ErrorType {
   message: string;
   status: number;
+}
+
+//Database connection
+// getting-started.js
+
+main().catch((err) => console.log(err));
+async function main() {
+  if (process.env.MONGO_DB) {
+    await mongoose.connect(process.env.MONGO_DB);
+  }
 }
 
 //Test
