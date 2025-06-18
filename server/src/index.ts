@@ -1,12 +1,13 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-dotenv.config();
-
 import { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
-// import { connectDb } from "../lib/db.js";
+import reminderRoutes from "./routes/reminderRoutes";
+import session from "express-session";
+import { ExpressError } from "./ExpressError/ExpressError";
 
+dotenv.config();
 const app = express();
 
 app.use(express.json()); // parses json
@@ -19,8 +20,6 @@ interface ErrorType {
 }
 
 //Database connection
-// getting-started.js
-
 main().catch((err) => console.log(err));
 async function main() {
   if (process.env.MONGO_DB) {
@@ -28,12 +27,41 @@ async function main() {
   }
 }
 
+// SESSIONS WITH MONGO STORE
+const session_secret = process.env.SESSION_SECRET;
+
+if (!session_secret) {
+  throw new ExpressError(
+    "session secret is not defined",
+    StatusCodes.NOT_IMPLEMENTED
+  );
+}
+
+app.use(
+  session({
+    name: process.env.SESSION_NAME,
+    secret: session_secret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      secure: true,
+      httpOnly: true,
+      expires: new Date(Date.now() * 1000 * 60 * 60 * 24 * 7), // 1 week
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+    },
+  })
+);
+
 //Test
 // app.get("/", (req: Request, res: Response) => {
 //   console.log("hello");
 //   res.status(200).json({ message: "Hello world" });
 // });
 
+// ROUTES
+app.use("/api/reminder/", reminderRoutes);
+
+/** @_req is used to indicate that it is unused to avoid parsing errors instead of using '*' to catch everything */
 app.use((_req: Request, res: Response) => {
   res.status(404).json({ message: "Page Not Found" });
 });

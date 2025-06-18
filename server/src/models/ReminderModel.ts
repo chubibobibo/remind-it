@@ -14,10 +14,10 @@ const ReminderSchema = new Schema(
       required: true,
     },
 
-    author: {
-      type: Schema.Types.ObjectId,
-      ref: "UserModel",
-    },
+    // author: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "UserModel",
+    // },
   },
   { timestamps: true }
 );
