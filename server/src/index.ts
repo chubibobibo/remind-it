@@ -5,7 +5,10 @@ import { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
 import reminderRoutes from "./routes/reminderRoutes";
 import session from "express-session";
+import { store } from "./utils/sessionStore/mongoStore";
 import { ExpressError } from "./ExpressError/ExpressError";
+import passport from "passport";
+import UserModel from "./models/UserModel";
 
 dotenv.config();
 const app = express();
@@ -39,6 +42,7 @@ if (!session_secret) {
 
 app.use(
   session({
+    store,
     name: process.env.SESSION_NAME,
     secret: session_secret,
     resave: false,
@@ -58,7 +62,16 @@ app.use(
 //   res.status(200).json({ message: "Hello world" });
 // });
 
-// ROUTES
+// ==Configure passport==
+app.use(passport.initialize()); // initializes passport for incoming requests
+app.use(passport.session()); // creates passport object (contains user data) in session
+
+// ==Configure passport local==
+passport.use(UserModel.createStrategy()); // uses local strategy that was implemented in the UserSchema
+passport.serializeUser(UserModel.serializeUser());
+passport.deserializeUser(UserModel.deserializeUser());
+
+// ==ROUTES==
 app.use("/api/reminder/", reminderRoutes);
 
 /** @_req is used to indicate that it is unused to avoid parsing errors instead of using '*' to catch everything */
