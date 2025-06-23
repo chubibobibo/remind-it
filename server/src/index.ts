@@ -4,11 +4,13 @@ import dotenv from "dotenv";
 import { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
 import reminderRoutes from "./routes/reminderRoutes";
+import userRoutes from "./routes/userRoutes";
 import session from "express-session";
 import { store } from "./utils/sessionStore/mongoStore";
 import { ExpressError } from "./ExpressError/ExpressError";
 import passport from "passport";
 import UserModel from "./models/UserModel";
+import { register } from "./controllers/userController";
 
 dotenv.config();
 const app = express();
@@ -73,6 +75,7 @@ passport.deserializeUser(UserModel.deserializeUser());
 
 // ==ROUTES==
 app.use("/api/reminder/", reminderRoutes);
+app.use("/api/user/", userRoutes);
 
 /** @_req is used to indicate that it is unused to avoid parsing errors instead of using '*' to catch everything */
 app.use((_req: Request, res: Response) => {
