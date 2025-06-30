@@ -6,7 +6,8 @@ import { StatusCodes } from "http-status-codes";
 export const loginMiddleware = (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
+  login: any
 ) => {
   passport.authenticate("local", (err: any, user: any, info: any) => {
     if (err) {
@@ -24,7 +25,7 @@ export const loginMiddleware = (
       if (err) {
         return next(err);
       }
-      return loginMiddleware(req, res);
+      return login(req, res);
     });
   });
 };
