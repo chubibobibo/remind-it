@@ -1,11 +1,13 @@
 import express from "express";
 import { login, register } from "../controllers/userController";
-import { registerValidation } from "../utils/expressValidator/formInputValidation";
-import { loginMiddleware } from "../middleware/authMiddleware";
+import {
+  registerValidation,
+  loginValidation,
+} from "../middleware/inputValidationMiddleware";
 
 import { Request, Response, NextFunction } from "express";
 import passport from "passport";
-import { ExpressError } from "../ExpressError/ExpressError";
+// import { ExpressError } from "../ExpressError/ExpressError";
 import { StatusCodes } from "http-status-codes";
 
 const router = express.Router();
@@ -15,6 +17,7 @@ router.post("/register", registerValidation, register);
 //LOGIN
 router.post(
   "/login",
+  loginValidation,
   (req: Request, res: Response, next: NextFunction) => {
     passport.authenticate("local", (err: any, user: any, info: any) => {
       if (err) {
