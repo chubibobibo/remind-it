@@ -1,5 +1,5 @@
 import express from "express";
-import { login, register } from "../controllers/userController";
+import { login, register, updateUser } from "../controllers/userController";
 import {
   registerValidation,
   loginValidation,
@@ -7,17 +7,30 @@ import {
 
 import { Request, Response, NextFunction } from "express";
 import passport from "passport";
-// import { ExpressError } from "../ExpressError/ExpressError";
 import { StatusCodes } from "http-status-codes";
+import { rateLimit } from "express-rate-limit";
 
 const router = express.Router();
 
+// Express Rate Limit
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 15 minutes
+  limit: 3, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+  standardHeaders: "draft-8", // draft-6: `RateLimit-*` headers; draft-7 & draft-8: combined `RateLimit` header
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
+  // store: ... , // Redis, Memcached, etc. See below.
+  message: "Too many login attempts. Try again after 10mins",
+  validate: true,
+});
+
+// REGISTER
 router.post("/register", registerValidation, register);
 
 //LOGIN
 router.post(
   "/login",
   loginValidation,
+  limiter,
   (req: Request, res: Response, next: NextFunction) => {
     passport.authenticate("local", (err: any, user: any, info: any) => {
       if (err) {
@@ -41,5 +54,8 @@ router.post(
   },
   login
 );
+
+// UPDATE
+router.patch("/updateUser/:id", updateUser);
 
 export default router;
