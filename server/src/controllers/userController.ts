@@ -32,7 +32,7 @@ export const register = async (req: Request, res: Response) => {
 // LOGIN USER
 export const login = async (req: Request, res: Response) => {
   if (!req.body) {
-    throw new ExpressError("No data recieved", StatusCodes.BAD_REQUEST);
+    throw new ExpressError("No data received", StatusCodes.BAD_REQUEST);
   }
 
   const foundUser = await UserModel.findOne({ username: req.body.username });

@@ -3,7 +3,9 @@ import { login, register, updateUser } from "../controllers/userController";
 import {
   registerValidation,
   loginValidation,
+  updateUserValidation,
 } from "../middleware/inputValidationMiddleware";
+import { isLoggedIn } from "../middleware/loggedUserMidleware";
 
 import { Request, Response, NextFunction } from "express";
 import passport from "passport";
@@ -56,6 +58,6 @@ router.post(
 );
 
 // UPDATE
-router.patch("/updateUser/:id", updateUser);
+router.patch("/updateUser/:id", updateUserValidation, isLoggedIn, updateUser);
 
 export default router;
