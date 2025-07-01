@@ -10,6 +10,12 @@ import { ExpressError } from "../ExpressError/ExpressError";
 import { StatusCodes } from "http-status-codes";
 import UserModel from "../models/UserModel";
 
+interface RequestUserType extends Request {
+  user: {
+    _id: string;
+  };
+}
+
 //create a function that will handle the error
 //This function will accept an array (validateValues) of valeus to be validated.
 //then this function will return the array we passed as an argument and an error response
@@ -90,5 +96,53 @@ export const loginValidation = withValidationErrors([
     .notEmpty()
     .withMessage("Password cannot be empty")
     .isLength({ min: 8 })
-    .withMessage("Password must be atlest 8 characters"),
+    .withMessage("Password must be at least 8 characters"),
+]);
+
+export const updateUserValidation = withValidationErrors([
+  body("username")
+    .notEmpty()
+    .withMessage("Username cannot be empty")
+    .isLength({ min: 4 })
+    .withMessage("Username should be at least 4 characters")
+    // req body is an object
+    .custom(async (username, { req }) => {
+      const foundUsername = await UserModel.findOne({ username: username });
+      // console.log(req.user.username, username);
+      if (foundUsername && req?.user?.username !== username) {
+        throw new ExpressError(
+          "Username already exist",
+          StatusCodes.BAD_REQUEST
+        );
+      }
+    }),
+  body("firstName")
+    .notEmpty()
+    .withMessage("First name cannot be empty")
+    .isLength({ min: 4 })
+    .withMessage("First name should be at least 4 characters"),
+
+  body("lastName")
+    .notEmpty()
+    .withMessage("Last name cannot be empty")
+    .isLength({ min: 4 })
+    .withMessage("Last name should be at least 4 characters"),
+
+  body("email")
+    .notEmpty()
+    .withMessage("Email cannot be empty")
+    .isEmail()
+    .withMessage("Email must be valid")
+    .custom(async (email) => {
+      const foundUser = await UserModel.findOne({ email: email });
+      if (foundUser && foundUser.email !== email) {
+        throw new ExpressError("Email already exist", StatusCodes.BAD_REQUEST);
+      }
+    }),
+
+  body("password")
+    .notEmpty()
+    .withMessage("password cannot be empty")
+    .isLength({ min: 8 })
+    .withMessage("Password should be at least 8 characters"),
 ]);
