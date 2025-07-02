@@ -3,6 +3,13 @@ import { ExpressError } from "../ExpressError/ExpressError";
 import { StatusCodes } from "http-status-codes";
 import UserModel from "../models/UserModel";
 
+/** @RequestUserType used to type check req.user._id to prevent errors of overload */
+interface RequestUserType extends Request {
+  user?: {
+    _id?: string;
+  };
+}
+
 // REGISTER USER
 export const register = async (req: Request, res: Response) => {
   if (!req.body) {
@@ -70,6 +77,19 @@ export const updateUser = async (req: Request, res: Response) => {
     res
       .status(StatusCodes.OK)
       .json({ message: "User successfully updated", updatedUser });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getLoggedUser = async (req: RequestUserType, res: Response) => {
+  const loggedUserId = req.user?._id;
+  try {
+    const loggedUser = await UserModel.findById(loggedUserId);
+    if (!loggedUser) {
+      throw new ExpressError("No logged user", StatusCodes.NOT_FOUND);
+    }
+    res.status(StatusCodes.OK).json(loggedUser);
   } catch (err) {
     console.log(err);
   }
