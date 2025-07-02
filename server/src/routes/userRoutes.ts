@@ -1,5 +1,10 @@
 import express from "express";
-import { login, register, updateUser } from "../controllers/userController";
+import {
+  getLoggedUser,
+  login,
+  register,
+  updateUser,
+} from "../controllers/userController";
 import {
   registerValidation,
   loginValidation,
@@ -56,6 +61,9 @@ router.post(
   },
   login
 );
+
+//GET LOGGED USER
+router.get("/getLoggedUser", getLoggedUser);
 
 // UPDATE
 router.patch("/updateUser/:id", updateUserValidation, isLoggedIn, updateUser);

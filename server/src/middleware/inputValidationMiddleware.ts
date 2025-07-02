@@ -10,12 +10,6 @@ import { ExpressError } from "../ExpressError/ExpressError";
 import { StatusCodes } from "http-status-codes";
 import UserModel from "../models/UserModel";
 
-interface RequestUserType extends Request {
-  user: {
-    _id: string;
-  };
-}
-
 //create a function that will handle the error
 //This function will accept an array (validateValues) of valeus to be validated.
 //then this function will return the array we passed as an argument and an error response
