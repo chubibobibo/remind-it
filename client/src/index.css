@@ -5,3 +5,26 @@
   --font-montserrat: "Montserrat";
   --font-rubik: "Rubik";
 }
+
+/* 
+Reausable styling */
+
+@layer components {
+  /* Landing page card */
+  .landing-card-mobile {
+    @apply w-9/12 h-[20rem] bg-blue-400 rounded-2xl p-2;
+  }
+
+  .landing-card {
+    @apply w-8/12 h-[25rem] bg-blue-400 rounded-2xl p-2;
+  }
+
+  /* landing page logo */
+  .landing-logo-mobile {
+    @apply w-40 h-35 transform translate-y-20;
+  }
+
+  .landing-logo {
+    @apply w-75 h-65 transform translate-y-30;
+  }
+}
