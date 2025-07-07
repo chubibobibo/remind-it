@@ -3,6 +3,14 @@ import passportLocalMongoose from "passport-local-mongoose";
 import { roles } from "../utils/roles";
 // import { PassportLocalSchema } from "mongoose";
 
+interface IUser extends Document {
+  username: string;
+  firstName: string;
+  lastName: string;
+  role: string;
+  email: string;
+}
+
 const { Schema } = mongoose;
 
 const UserSchema = new Schema(

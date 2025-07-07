@@ -6,11 +6,11 @@ import { StatusCodes } from "http-status-codes";
 import reminderRoutes from "./routes/reminderRoutes";
 import userRoutes from "./routes/userRoutes";
 import session from "express-session";
+// import MongoStore from "connect-mongo";
 import { store } from "./utils/sessionStore/mongoStore";
 import { ExpressError } from "./ExpressError/ExpressError";
 import passport from "passport";
 import UserModel from "./models/UserModel";
-import { register } from "./controllers/userController";
 
 dotenv.config();
 const app = express();
@@ -50,7 +50,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      secure: true,
+      secure: process.env.NODE_ENV === "production",
       httpOnly: true,
       expires: new Date(Date.now() * 1000 * 60 * 60 * 24 * 7), // 1 week
       maxAge: 1000 * 60 * 60 * 24 * 7,
