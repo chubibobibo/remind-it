@@ -1,7 +1,11 @@
+import AuthModal from "../components/AuthModal";
+
 function LandingPage() {
   return (
-    <>
-      <section className='bg-blue-200 flex'>
+    <div className='w-screen'>
+      <section className='bg-blue-200 flex w-screen'>
+        <AuthModal modalName={"login_modal"} />
+        <AuthModal modalName={"register_modal"} />
         <section className='w-screen h-screen flex justify-center items-center flex-col transform -translate-y-20'>
           <img
             src='../src/assets/note-logo.png'
@@ -20,13 +24,43 @@ function LandingPage() {
             <h3 className='title-subtext text-gray-600'>
               Scheduling Solutions
             </h3>
-          </section>
-          <section>
-            <button className='btn btn-secondary'>Button</button>
+            <section className='flex gap-4 pt-15'>
+              {/* LOGIN BUTTON */}
+              <button
+                className='btn btn-sm md:btn-md btn-primary w-20 md:w-40'
+                onClick={
+                  () =>
+                    (
+                      document.getElementById(
+                        "login_modal"
+                      ) as HTMLDialogElement
+                    ).showModal() //casts the result of getElementById to HTMLDialogElement that contains the show modal method
+                }
+              >
+                Login
+              </button>
+              {/* REGISTER BUTTON */}
+              <button
+                className='btn btn-sm md:btn-md btn-secondary w-20 md:w-40'
+                onClick={
+                  () =>
+                    (
+                      document.getElementById(
+                        "register_modal"
+                      ) as HTMLDialogElement
+                    ).showModal() //casts the result of getElementById to HTMLDialogElement that contains the show modal method
+                }
+              >
+                Register
+              </button>
+              {/* <button className='btn btn-sm md:btn-md btn-secondary w-20 md:w-40'>
+                Register
+              </button> */}
+            </section>
           </section>
         </section>
       </section>
-    </>
+    </div>
   );
 }
 export default LandingPage;

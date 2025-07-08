@@ -1,5 +1,23 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light;
+}
+
+/** Custom colors for components*/
+/* [data-theme="light"] {
+  .green_btn {
+    background-color: #4bb482;
+    border-color: #4bb482;
+  }
+} */
+
+/** Custom component utilities*/
+@utility btn-primary {
+  @apply rounded-full border-0 bg-emerald-600 shadow-md hover:bg-emerald-900;
+}
+@utility btn-secondary {
+  @apply rounded-full border-0 bg-red-600 shadow-md hover:bg-red-900;
+}
 
 @theme {
   --font-poppins: "Poppins";
@@ -17,7 +35,7 @@ Reausable styling */
 @layer components {
   /* Landing page card */
   .landing-card-mobile {
-    @apply w-9/12 h-[20rem] bg-blue-400 rounded-2xl p-2 md:w-8/12 md:h-[25rem] md:bg-blue-400 md:rounded-2xl p-2;
+    @apply w-9/12 h-[20rem] bg-blue-400 rounded-2xl p-2 md:w-6/12 md:h-[25rem] md:bg-blue-400 md:rounded-2xl p-2;
   }
 
   /* landing page logo */
