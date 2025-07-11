@@ -1,4 +1,27 @@
 import AuthModal from "../components/AuthModal";
+// import { action } from "../utils/LoginActionFunc";
+
+// import { ActionFunction } from "react-router-dom";
+// import axios from "axios";
+// import { toast } from "react-toastify";
+
+// export const action = async ({ request }) => {
+//   const formData = await request.formData(); // Obtains data from forms
+//   const data = Object.fromEntries(formData); // Converts data into useable object
+//   try {
+//     await axios.post("/api/user/login", data);
+//     toast.success("User Logged in");
+//   } catch (err) {
+//     console.log(err);
+//     if (axios.isAxiosError(err)) {
+//       toast.error(
+//         Array.isArray(err?.response?.data?.message)
+//           ? err?.response?.data?.message[0]
+//           : err?.response?.data.message
+//       );
+//     }
+//   }
+// };
 
 function LandingPage() {
   return (

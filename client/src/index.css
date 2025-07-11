@@ -11,7 +11,7 @@
   }
 } */
 
-/** Custom component utilities*/
+/** CUSTOM COMPONENT UTILITIES (DAISY-UI)*/
 @utility btn-primary {
   @apply rounded-full border-0 bg-emerald-600 shadow-md hover:bg-emerald-900;
 }
@@ -19,6 +19,7 @@
   @apply rounded-full border-0 bg-red-600 shadow-md hover:bg-red-900;
 }
 
+/** FONTS USED (google fonts)*/
 @theme {
   --font-poppins: "Poppins";
   --font-montserrat: "Montserrat";
@@ -27,10 +28,9 @@
   --font-game: "Press Start 2P";
 }
 
-/* 
-Reausable styling */
+/* REUSABLE STYLES */
 
-/** NOTE: Directly specify different sizes in the classnames*/
+/** NOTE: Directly specify different sizes in the classNames*/
 
 @layer components {
   /* Landing page card */

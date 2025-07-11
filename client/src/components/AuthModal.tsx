@@ -1,4 +1,5 @@
 import TextInput from "./TextInput";
+import { Form } from "react-router-dom";
 
 interface ModalNameType {
   modalName: string;
@@ -18,9 +19,17 @@ function AuthModal({ modalName }: ModalNameType) {
           <h3 className='font-bold text-lg'>Login</h3>
           {/* <p className='py-4'>Press ESC key or click on ✕ button to close</p> */}
           {/* INPUT FIELDS */}
-          <section className='flex flex-col items-center'>
-            <TextInput icon={"user"} />
-          </section>
+          <Form method='POST'>
+            <section className='flex flex-col items-center gap-2'>
+              <TextInput icon={"user"} label={"Username"} name={"username"} />
+              <TextInput
+                icon={"password"}
+                label={"Password"}
+                name={"password"}
+              />
+              <button type='submit'>submit</button>
+            </section>
+          </Form>
         </div>
       </dialog>
     </>
