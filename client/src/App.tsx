@@ -3,6 +3,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { HomeLayout, LoginPage, LandingPage, RegisterPage } from "./utils";
 
+import { action as loginAction } from "./utils/LoginActionFunc";
+// import { action as loginAction } from "./pages/LandingPage";
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -13,6 +16,7 @@ function App() {
           path: "/",
           index: true,
           element: <LandingPage />,
+          action: loginAction,
         },
         {
           path: "login",
