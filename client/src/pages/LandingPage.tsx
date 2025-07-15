@@ -1,29 +1,12 @@
 import AuthModal from "../components/AuthModal";
-// import { action } from "../utils/LoginActionFunc";
-
-// import { ActionFunction } from "react-router-dom";
-// import axios from "axios";
-// import { toast } from "react-toastify";
-
-// export const action = async ({ request }) => {
-//   const formData = await request.formData(); // Obtains data from forms
-//   const data = Object.fromEntries(formData); // Converts data into useable object
-//   try {
-//     await axios.post("/api/user/login", data);
-//     toast.success("User Logged in");
-//   } catch (err) {
-//     console.log(err);
-//     if (axios.isAxiosError(err)) {
-//       toast.error(
-//         Array.isArray(err?.response?.data?.message)
-//           ? err?.response?.data?.message[0]
-//           : err?.response?.data.message
-//       );
-//     }
-//   }
-// };
+// import { useState } from "react";
 
 function LandingPage() {
+  // const { modalState, setModalState } = useState(null);
+  // const handleClick = () => {
+  //   setModalState("register_modal");
+  // };
+  // console.log(modalState);
   return (
     <div className='w-screen'>
       <section className='flex w-screen'>
@@ -43,7 +26,7 @@ function LandingPage() {
             <section className='flex gap-4 pt-15'>
               {/* LOGIN BUTTON */}
               <button
-                className='btn btn-sm md:btn-md btn-primary w-20 md:w-40'
+                className='btn btn-sm md:btn-md btn-primary-custom w-20 md:w-40'
                 onClick={
                   () =>
                     (
@@ -57,15 +40,14 @@ function LandingPage() {
               </button>
               {/* REGISTER BUTTON */}
               <button
-                className='btn btn-sm md:btn-md btn-secondary w-20 md:w-40'
-                onClick={
-                  () =>
-                    (
-                      document.getElementById(
-                        "register_modal"
-                      ) as HTMLDialogElement
-                    ).showModal() //casts the result of getElementById to HTMLDialogElement that contains the show modal method
-                }
+                className='btn btn-sm md:btn-md btn-secondary-custom w-20 md:w-40'
+                onClick={() => {
+                  (
+                    document.getElementById(
+                      "register_modal"
+                    ) as HTMLDialogElement
+                  ).showModal(); //casts the result of getElementById to HTMLDialogElement that contains the show modal method
+                }}
               >
                 Register
               </button>
