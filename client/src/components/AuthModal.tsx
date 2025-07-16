@@ -1,5 +1,6 @@
 import TextInput from "./TextInput";
 import { Form } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 interface ModalNameType {
   modalName: string;
@@ -21,14 +22,79 @@ function AuthModal({ modalName }: ModalNameType) {
           {/* INPUT FIELDS */}
           <Form method='POST'>
             <section className='flex flex-col items-center gap-2'>
-              <TextInput icon={"user"} label={"Username"} name={"username"} />
-              <TextInput
-                icon={"password"}
-                label={"Password"}
-                name={"password"}
-              />
-              <button type='submit'>submit</button>
+              {modalName === "login_modal" ? (
+                <>
+                  <TextInput
+                    icon={"user"}
+                    label={"Username"}
+                    name={"username"}
+                    type={"text"}
+                  />
+                  <TextInput
+                    icon={"password"}
+                    label={"Password"}
+                    name={"password"}
+                    type={"password"}
+                  />
+                  <button
+                    className='btn btn-success'
+                    type='submit'
+                    value={"loginForm"}
+                    name='formId'
+                  >
+                    Login
+                  </button>
+                </>
+              ) : (
+                <>
+                  <TextInput
+                    icon={"user"}
+                    label={"Username"}
+                    name={"username"}
+                    type={"text"}
+                  />
+                  <TextInput
+                    icon={"user"}
+                    label={"First Name"}
+                    name={"firstName"}
+                    type={"text"}
+                  />
+                  <TextInput
+                    icon={"user"}
+                    label={"Last Name"}
+                    name={"lastName"}
+                    type={"text"}
+                  />
+                  <TextInput
+                    icon={"email"}
+                    label={"Email"}
+                    name={"email"}
+                    type={"email"}
+                  />
+                  <TextInput
+                    icon={"password"}
+                    label={"Password"}
+                    name={"password1"}
+                    type={"password"}
+                  />
+                  <TextInput
+                    icon={"password"}
+                    label={"Re-enter your password"}
+                    name={"password2"}
+                    type={"password"}
+                  />
+                  <button
+                    className='btn btn-success'
+                    type='submit'
+                    value={"registerForm"}
+                    name='formId'
+                  >
+                    Register
+                  </button>
+                </>
+              )}
             </section>
+            <ToastContainer className='absolute z-100' />
           </Form>
         </div>
       </dialog>

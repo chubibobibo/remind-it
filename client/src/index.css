@@ -12,11 +12,11 @@
 } */
 
 /** CUSTOM COMPONENT UTILITIES (DAISY-UI)*/
-@utility btn-primary {
-  @apply rounded-full border-0 bg-emerald-600 shadow-md hover:bg-emerald-900;
+@utility btn-primary-custom {
+  @apply rounded-xl border-0 bg-emerald-600 shadow-md hover:bg-emerald-800 text-white;
 }
-@utility btn-secondary {
-  @apply rounded-full border-0 bg-red-600 shadow-md hover:bg-red-900;
+@utility btn-secondary-custom {
+  @apply rounded-xl border-0 bg-red-600 shadow-md hover:bg-red-900 text-white;
 }
 
 /** FONTS USED (google fonts)*/

@@ -1,6 +1,7 @@
 // import { ActionFunction } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { redirect } from "react-router-dom";
 
 export const action = async ({ request }: { request: Request }) => {
   const formData = await request.formData(); // Obtains data from forms
@@ -8,6 +9,7 @@ export const action = async ({ request }: { request: Request }) => {
   try {
     await axios.post("/api/user/login", data);
     toast.success("User Logged in");
+    return redirect("/login");
   } catch (err) {
     console.log(err);
     if (axios.isAxiosError(err)) {
@@ -16,6 +18,7 @@ export const action = async ({ request }: { request: Request }) => {
           ? err?.response?.data?.message[0]
           : err?.response?.data.message
       );
+      // return redirect("/");
     }
   }
 };

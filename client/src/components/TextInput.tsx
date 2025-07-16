@@ -7,15 +7,16 @@ interface IconType {
   icon: keyof typeof iconsObject; // icon property must be one of the keys of iconsObject.
   label: string;
   name: string;
+  type: string;
 }
 
-function TextInput({ icon, label, name }: IconType) {
+function TextInput({ icon, label, name, type }: IconType) {
   return (
     <>
       <label className='input input-sm md:input-md pt-2 flex items-center justify-center'>
         {/* selecting the icon component using the iconsObject */}
         {iconsObject[icon]}
-        <input type='text' className='grow' placeholder={label} name={name} />
+        <input type={type} className='grow' placeholder={label} name={name} />
       </label>
     </>
   );

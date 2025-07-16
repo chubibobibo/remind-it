@@ -3,8 +3,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { HomeLayout, LoginPage, LandingPage, RegisterPage } from "./utils";
 
-import { action as loginAction } from "./utils/LoginActionFunc";
-// import { action as loginAction } from "./pages/LandingPage";
+/** @multiAuthActionFunc implements conditional action whether for logging in or registering. function used as action function for logging in and registering depending of the formId of the button clicked (login or register). */
+import { multiAuthActionFunc } from "./utils/actionFunctions/MultiAuthActionFunc";
 
 function App() {
   const router = createBrowserRouter([
@@ -16,7 +16,7 @@ function App() {
           path: "/",
           index: true,
           element: <LandingPage />,
-          action: loginAction,
+          action: multiAuthActionFunc,
         },
         {
           path: "login",
