@@ -1,12 +1,8 @@
 import AuthModal from "../components/AuthModal";
 // import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 
 function LandingPage() {
-  // const { modalState, setModalState } = useState(null);
-  // const handleClick = () => {
-  //   setModalState("register_modal");
-  // };
-  // console.log(modalState);
   return (
     <div className='w-screen'>
       <section className='flex w-screen'>
@@ -57,8 +53,10 @@ function LandingPage() {
             </section>
           </section>
         </section>
-        <AuthModal modalName={"login_modal"} />
-        <AuthModal modalName={"register_modal"} />
+        <section>
+          <AuthModal modalName={"login_modal"} />
+          <AuthModal modalName={"register_modal"} />
+        </section>
       </section>
     </div>
   );

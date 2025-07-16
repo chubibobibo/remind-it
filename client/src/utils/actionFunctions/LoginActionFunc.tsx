@@ -18,7 +18,7 @@ export const action = async ({ request }: { request: Request }) => {
           ? err?.response?.data?.message[0]
           : err?.response?.data.message
       );
-      return redirect("/");
+      // return redirect("/");
     }
   }
 };

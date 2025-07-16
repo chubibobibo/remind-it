@@ -1,5 +1,6 @@
 import TextInput from "./TextInput";
 import { Form } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 interface ModalNameType {
   modalName: string;
@@ -35,6 +36,14 @@ function AuthModal({ modalName }: ModalNameType) {
                     name={"password"}
                     type={"password"}
                   />
+                  <button
+                    className='btn btn-success'
+                    type='submit'
+                    value={"loginForm"}
+                    name='formId'
+                  >
+                    Login
+                  </button>
                 </>
               ) : (
                 <>
@@ -74,13 +83,18 @@ function AuthModal({ modalName }: ModalNameType) {
                     name={"password2"}
                     type={"password"}
                   />
+                  <button
+                    className='btn btn-success'
+                    type='submit'
+                    value={"registerForm"}
+                    name='formId'
+                  >
+                    Register
+                  </button>
                 </>
               )}
-
-              <button className='btn btn-success' type='submit'>
-                Login
-              </button>
             </section>
+            <ToastContainer className='absolute z-100' />
           </Form>
         </div>
       </dialog>
