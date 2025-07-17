@@ -1,6 +1,6 @@
 import AuthModal from "../components/AuthModal";
 // import { useState } from "react";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 
 function LandingPage() {
   return (
@@ -54,8 +54,17 @@ function LandingPage() {
           </section>
         </section>
         <section>
-          <AuthModal modalName={"login_modal"} />
-          <AuthModal modalName={"register_modal"} />
+          <section className='absolute z-[9999]'>
+            <ToastContainer
+              position='top-center'
+              transition={Zoom}
+              toastClassName='z-[9999]'
+            />
+          </section>
+          <section className='absolute z-0'>
+            <AuthModal modalName={"login_modal"} />
+            <AuthModal modalName={"register_modal"} />
+          </section>
         </section>
       </section>
     </div>
