@@ -1,6 +1,6 @@
 import TextInput from "./TextInput";
 import { Form } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 
 interface ModalNameType {
   modalName: string;
@@ -9,8 +9,20 @@ interface ModalNameType {
 function AuthModal({ modalName }: ModalNameType) {
   return (
     <>
-      <dialog id={modalName} className='modal'>
-        <div className='modal-box bg-blue-100'>
+      <section>
+        <ToastContainer
+          position='top-center'
+          transition={Zoom}
+          toastClassName='z-[9999]'
+          // toastClassName={(context) =>
+          //   toastContext[context?.type || "default"] +
+          //   "relative flex p-1 rounded-md justify-between overflow-hidden cursor-pointer"
+          // }
+          // style={{ zIndex: 9999 }}
+        />
+      </section>
+      <dialog id={modalName} className='modal z-0'>
+        <div className='modal-box bg-blue-100 '>
           <form method='dialog'>
             {/* if there is a button in form, it will close the modal */}
             <button className='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>
@@ -94,7 +106,6 @@ function AuthModal({ modalName }: ModalNameType) {
                 </>
               )}
             </section>
-            <ToastContainer className='absolute z-100' />
           </Form>
         </div>
       </dialog>
