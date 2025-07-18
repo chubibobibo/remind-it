@@ -46,9 +46,14 @@ export const multiAuthActionFunc = async ({
       formData.set("password", password1 as string);
       try {
         const data = Object.fromEntries(formData);
+        // console.log(data);
         await axios.post("/api/user/register", data);
         toast.success("User successfully registered");
-        return redirect("/");
+        const newUsername = formData.get("username");
+        const newPassword = formData.get("password");
+        const newUser = { username: newUsername, password: newPassword };
+        await axios.post("/api/user/login", newUser);
+        return redirect("/login");
       } catch (err) {
         console.log(err);
         if (axios.isAxiosError(err)) {

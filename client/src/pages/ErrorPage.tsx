@@ -25,7 +25,8 @@ function ErrorPage() {
     } else {
       return (
         <>
-          <h1>Something went wrong</h1>
+          {/* <h1>Something went wrong</h1> */}
+          <img src='../src/assets/error2.png' alt='' />
         </>
       );
     }
