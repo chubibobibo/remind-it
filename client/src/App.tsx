@@ -7,7 +7,10 @@ import {
   LandingPage,
   RegisterPage,
   ErrorPage,
+  DashboardLayout,
 } from "./utils";
+
+import ProtectRoutes from "./utils/ProtectRoutes";
 
 /** @multiAuthActionFunc implements conditional action whether for logging in or registering. function used as action function for logging in and registering depending of the formId of the button clicked (login or register). */
 import { multiAuthActionFunc } from "./utils/actionFunctions/MultiAuthActionFunc";
@@ -33,6 +36,14 @@ function App() {
         {
           path: "register",
           element: <RegisterPage />,
+        },
+        {
+          path: "/dashboard",
+          element: (
+            <ProtectRoutes>
+              <DashboardLayout />
+            </ProtectRoutes>
+          ),
         },
       ],
     },

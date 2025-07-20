@@ -20,7 +20,7 @@ export const multiAuthActionFunc = async ({
     try {
       await axios.post("/api/user/login", data);
       toast.success("User successfully logged in");
-      return redirect("/login");
+      return redirect("/dashboard");
     } catch (err) {
       console.log(err);
       if (axios.isAxiosError(err)) {
@@ -53,7 +53,7 @@ export const multiAuthActionFunc = async ({
         const newPassword = formData.get("password");
         const newUser = { username: newUsername, password: newPassword };
         await axios.post("/api/user/login", newUser);
-        return redirect("/login");
+        return redirect("/dashboard");
       } catch (err) {
         console.log(err);
         if (axios.isAxiosError(err)) {
