@@ -8,6 +8,7 @@ import {
   RegisterPage,
   ErrorPage,
   DashboardLayout,
+  HomePage,
 } from "./utils";
 
 import ProtectRoutes from "./utils/ProtectRoutes";
@@ -44,6 +45,12 @@ function App() {
               <DashboardLayout />
             </ProtectRoutes>
           ),
+          children: [
+            {
+              path: "home",
+              element: <HomePage />,
+            },
+          ],
         },
       ],
     },

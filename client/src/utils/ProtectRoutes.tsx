@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 // import { useLoggedUser } from "../hooks/useLoggedUser";
 import { Navigate } from "react-router-dom";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import axios from "axios";
 
-function ProtectRoutes({ children }: { children: ReactNode }) {
+type ChildrenType = {
+  children: ReactNode;
+};
+
+function ProtectRoutes({ children }: ChildrenType) {
   // const { getLoggedUser, loggedUser } = useLoggedUser(); // function to obtain logged user in the hook from zustand
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState(null);
@@ -31,7 +35,7 @@ function ProtectRoutes({ children }: { children: ReactNode }) {
     return null;
   }
 
-  return <>{userData ? children : <Navigate to='/login' />}</>;
+  return <>{userData ? children : <Navigate to='/' />}</>;
 }
 
 export default ProtectRoutes;

@@ -51,4 +51,8 @@
   .title-subtext {
     @apply text-sm font-poppins;
   }
+
+  .reminder-container {
+    @apply bg-red-200 h-25 rounded-sm flex flex-col mb-2;
+  }
 }
