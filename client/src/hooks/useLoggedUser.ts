@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 interface LoggedUserType {
   getLoggedUser: () => void;
@@ -23,9 +24,15 @@ export const useLoggedUser = create<LoggedUserType>((set) => ({
     try {
       const userData = await axios.get("/api/user/getLoggedUser");
       set({ loggedUser: userData.data });
-      console.log(loggedUser);
     } catch (err) {
       console.log(err);
+      if (axios.isAxiosError(err)) {
+        toast.error(
+          Array.isArray(err?.response?.data?.message)
+            ? err?.response?.data?.message[0]
+            : err?.response?.data?.message
+        );
+      }
     }
   },
 }));
