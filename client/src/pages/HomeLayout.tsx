@@ -4,6 +4,7 @@ function HomeLayout() {
   /** @Outlet renders all children components */
   return (
     <>
+      {/* <Navbar /> */}
       <Outlet />
     </>
   );
