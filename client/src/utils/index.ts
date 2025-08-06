@@ -5,3 +5,4 @@ export { default as RegisterPage } from "../pages/RegisterPage";
 export { default as ErrorPage } from "../pages/ErrorPage";
 export { default as DashboardLayout } from "../pages/DashboardLayout";
 export { default as HomePage } from "../pages/HomePage";
+export { default as ProfilePage } from "../pages/ProfilePage";
