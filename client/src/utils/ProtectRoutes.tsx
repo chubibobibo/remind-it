@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import { useLoggedUser } from "../hooks/useLoggedUser";
 import { Navigate } from "react-router-dom";
 import type { ReactNode } from "react";
 import axios from "axios";
@@ -9,7 +8,6 @@ type ChildrenType = {
 };
 
 function ProtectRoutes({ children }: ChildrenType) {
-  // const { getLoggedUser, loggedUser } = useLoggedUser(); // function to obtain logged user in the hook from zustand
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState(null);
 
@@ -17,7 +15,7 @@ function ProtectRoutes({ children }: ChildrenType) {
     const getLoggedUser = async () => {
       try {
         const loggedUser = await axios.get("/api/user/getLoggedUser");
-        console.log(loggedUser);
+        // console.log(loggedUser);
         setUserData(loggedUser.data);
       } catch (err) {
         console.log(err);
@@ -28,7 +26,7 @@ function ProtectRoutes({ children }: ChildrenType) {
     getLoggedUser();
   }, []);
 
-  console.log(userData);
+  // console.log(userData);
 
   // stops first render so that state changes for userData will take effect therefore preventing Navigation to /login even userData exists
   if (isLoading) {

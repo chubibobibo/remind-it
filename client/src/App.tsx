@@ -9,6 +9,7 @@ import {
   ErrorPage,
   DashboardLayout,
   HomePage,
+  ProfilePage,
 } from "./utils";
 
 import ProtectRoutes from "./utils/ProtectRoutes";
@@ -37,6 +38,14 @@ function App() {
         {
           path: "register",
           element: <RegisterPage />,
+        },
+        {
+          path: "/profile",
+          element: (
+            <ProtectRoutes>
+              <ProfilePage />,
+            </ProtectRoutes>
+          ),
         },
         {
           path: "/dashboard",
